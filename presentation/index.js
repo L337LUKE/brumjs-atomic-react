@@ -1,72 +1,151 @@
-// Import React
-import React from "react";
-
-// Import Spectacle Core tags
+import React from 'react';
+import styled from 'react-emotion';
 import {
-  BlockQuote,
-  Cite,
-  Deck,
-  Heading,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text
-} from "spectacle";
+    Deck,
+    CodePane,
+    Slide,
+    Appear,
+    Layout,
+    Fill,
+    Fit,
+    List,
+    ListItem,
+    Notes,
+    Image,
+    Text,
+    Heading
+} from 'spectacle';
+import theme from './theme';
+import {
+    SlideOne,
+    SlideTwo,
+    SlideThree,
+    SlideFour,
+    SlideFive,
+    SlideSix,
+    SlideSeven,
+    SlideEight,
+    SlideNine,
+    SlideTen,
+    SlideEleven
+} from './slides';
+import preloader from 'spectacle/lib/utils/preloader';
+require('normalize.css');
 
-// Import theme
-import createTheme from "spectacle/lib/themes/default";
+const images = {
+    atoms: require('../assets/atoms.png'),
+    molecules: require('../assets/molecules.png'),
+    organisms: require('../assets/organisms.png'),
+    template: require('../assets/template.png'),
+    page: require('../assets/page.png'),
+    teamwork: require('../assets/teamwork.gif')
+};
 
-// Require CSS
-require("normalize.css");
+preloader(images);
 
-const theme = createTheme({
-  primary: "white",
-  secondary: "#1F2022",
-  tertiary: "#03A9FC",
-  quaternary: "#CECECE"
-}, {
-  primary: "Montserrat",
-  secondary: "Helvetica"
-});
+const ShadowedHeading = styled(Heading)`
+    text-shadow: 0px 0px 10px ${theme.screen.colors.primary};
+`;
+
+const StyledListItem = styled(ListItem)`
+    font-size: 33px;
+    font-weight: 500;
+    text-align: left;
+    margin-top: 100px;
+`;
 
 export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck transition={["zoom", "slide"]} transitionDuration={500} theme={theme}>
-        <Slide transition={["zoom"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
-          </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            open the presentation/index.js file to get started
-          </Text>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>Typography</Heading>
-          <Heading size={1} textColor="secondary">Heading 1</Heading>
-          <Heading size={2} textColor="secondary">Heading 2</Heading>
-          <Heading size={3} textColor="secondary">Heading 3</Heading>
-          <Heading size={4} textColor="secondary">Heading 4</Heading>
-          <Heading size={5} textColor="secondary">Heading 5</Heading>
-          <Text size={6} textColor="secondary">Standard text</Text>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Standard List</Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-          </List>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
-        </Slide>
-      </Deck>
-    );
-  }
+    render() {
+        return (
+            <Deck
+                progress="bar"
+                transition={['slide']}
+                transitionDuration={500}
+                theme={theme}
+                controls={false}
+            >
+                <SlideOne />
+                <SlideTwo />
+                <SlideThree />
+                <Slide bgImage={images.teamwork}>
+                    <Notes>
+                        <h4>Teamwork Notes</h4>
+                        <ul>
+                            <li>
+                                Constant communication, tight feedback loops,
+                                and true collaboration therefore become the glue
+                                that holds the process together
+                            </li>
+                            <li>
+                                Get your entire team to commit to honest
+                                conversation and genuine collaboration, and the
+                                details of your process will fall into place.
+                            </li>
+                        </ul>
+                    </Notes>
+                    <ShadowedHeading textColor="secondary">
+                        It's teamwork
+                    </ShadowedHeading>
+                </Slide>
+                <Slide>
+                    <Notes>
+                        <h4>Process Notes</h4>
+                    </Notes>
+                    <Heading textColor="secondary">It's process</Heading>
+                </Slide>
+                <SlideFour />
+                <SlideFive />
+                <SlideSix />
+                <SlideSeven />
+                <SlideEight />
+                <SlideNine />
+                <SlideTen />
+                {/* <SlideEleven /> */}
+                <Slide>
+                    <Notes>
+                        <h4>Atom Code Example Notes</h4>
+                        <ul>
+                            <li />
+                        </ul>
+                    </Notes>
+                    <Layout>
+                        <Fit style={{ minWidth: '400px' }}>
+                            <div style={{ marginTop: '75px' }}>
+                                <List>
+                                    <Appear>
+                                        <StyledListItem>SRP 👆</StyledListItem>
+                                    </Appear>
+                                    <Appear>
+                                        <StyledListItem>
+                                            Digestible piece ✅
+                                        </StyledListItem>
+                                    </Appear>
+                                    <Appear>
+                                        <StyledListItem>
+                                            Easy to test ✅
+                                        </StyledListItem>
+                                    </Appear>
+                                    <Appear>
+                                        <StyledListItem>
+                                            Sensible defaults ✅
+                                        </StyledListItem>
+                                    </Appear>
+                                </List>
+                            </div>
+                        </Fit>
+                        <Fill>
+                            <CodePane
+                                theme="external"
+                                textSize={22}
+                                overflow="scroll"
+                                height="75vh"
+                                source={require('raw-loader!../assets/atom.example')}
+                                lang="jsx"
+                            />
+                        </Fill>
+                    </Layout>
+                </Slide>
+            </Deck>
+        );
+    }
 }

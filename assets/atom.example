@@ -1,0 +1,32 @@
+const Button = ({
+    ariaLabel,
+    type,
+    children,
+    clickHandler,
+    className,
+    disabled,
+    icon,
+    style,
+    styleOverride
+}) => (
+    <button
+        aria-label={ariaLabel && ariaLabel}
+        className={`${className} ${s[style]}`}
+        style={styleOverride}
+        type={type}
+        disabled={disabled}
+        onClick={clickHandler}
+    >
+        {children && children}
+        {icon && icon}
+    </button>
+);
+
+Button.defaultProps = {
+    className: '',
+    clickHandler: () => {},
+    disabled: false,
+    style: 'jade',
+    styleOverride: {},
+    type: 'button'
+};
