@@ -1,34 +1,36 @@
 import React from 'react';
-import theme from '../theme';
-import styled from 'react-emotion';
-import { Heading, Slide, Notes } from 'spectacle';
+import { Heading, Notes, Image } from 'spectacle';
 import preloader from 'spectacle/lib/utils/preloader';
+import NoteLi from '../components/NoteLi';
 
 const images = {
-    bg: require('../../assets/ricknmorty.gif')
+    template: require('../../assets/template.png')
 };
 
 preloader(images);
 
-const StyledHeading = styled(Heading)`
-    text-shadow: 0px 0px 10px ${theme.screen.colors.primary};
-`;
-
 const SlideTen = () => (
-    <Slide
-        bgImage={images.bg.replace('/', '')}
-        bgColor="primary"
-        transition={['fade']}
-    >
+    <>
         <Notes>
+            <h4>Slide Notes</h4>
             <ul>
-                <li>Explain about react examples</li>
+                <NoteLi>Templates, Organise organisms, mainly layout</NoteLi>
+                <NoteLi>
+                    Good for illustrating to business stakeholders because they
+                    see process/progress
+                </NoteLi>
             </ul>
         </Notes>
-        <StyledHeading size={3} textColor="secondary" lineHeight={1}>
-            Now the React Part!
-        </StyledHeading>
-    </Slide>
+        <Heading size={3} textColor="secondary" lineHeight={1}>
+            Templates
+        </Heading>
+        <Image
+            width="100%"
+            height="100%"
+            src={images.template.replace('/', '')}
+            margin="40px auto 40px auto"
+        />
+    </>
 );
 
 export default SlideTen;

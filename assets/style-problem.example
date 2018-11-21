@@ -1,0 +1,19 @@
+<Component
+    className={`${s.bar} ${className ? className : ''}`}
+    style={{
+        zIndex,
+        ...styleOverrides
+    }}
+>
+    <MaxWidthContainer
+        isFlex={true}
+        styleOverrides={{
+            position: 'relative',
+            msFlexAlign: 'center',
+            WebkitBoxAlign: 'center',
+            alignItems: 'center'
+        }}
+    >
+        {children && children}
+    </MaxWidthContainer>
+</Component>

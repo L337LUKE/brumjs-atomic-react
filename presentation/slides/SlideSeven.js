@@ -1,37 +1,38 @@
 import React from 'react';
-import { Heading, Slide, Notes, Image } from 'spectacle';
+import { Heading, Notes, Image } from 'spectacle';
 import preloader from 'spectacle/lib/utils/preloader';
+import NoteLi from '../components/NoteLi';
 
 const images = {
-    organisms: require('../../assets/organisms.png')
+    atoms: require('../../assets/atoms.png')
 };
 
 preloader(images);
 
 const SlideSeven = () => (
-    <Slide bgColor="primary" transition={['fade']}>
+    <>
         <Notes>
-            <h4>Notes</h4>
-            <ul>
-                <li>Combination of molecules</li>
-                <li>Fairly small organism but they can be larger visually</li>
-                <li>
-                    Often organisms wrap other organisms, where the bulk of
-                    logic sits
-                </li>
-            </ul>
+            <h4>Slide notes</h4>
+            <ol>
+                <NoteLi>Simple shareable pieces of UI</NoteLi>
+                <NoteLi>Pieces that can't be broken down further</NoteLi>
+                <NoteLi>Good overview of apps main styles</NoteLi>
+                <NoteLi>
+                    Useful when used as part of living styleguide, Storybook etc
+                </NoteLi>
+            </ol>
         </Notes>
         <Heading size={3} textColor="secondary" lineHeight={1}>
-            Organisms
+            Atoms
         </Heading>
         <Image
             width="100%"
             height="100%"
-            src={images.organisms.replace('/', '')}
+            src={images.atoms.replace('/', '')}
             margin="40px auto 40px auto"
-            style={{ maxWidth: '600px' }}
+            style={{ maxWidth: '580px' }}
         />
-    </Slide>
+    </>
 );
 
 export default SlideSeven;

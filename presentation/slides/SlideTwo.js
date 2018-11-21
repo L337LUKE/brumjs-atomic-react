@@ -1,28 +1,20 @@
 import React from 'react';
 import styled from 'react-emotion';
-import { Heading, Slide, List, ListItem, Notes } from 'spectacle';
+import { Heading, List, ListItem, Notes } from 'spectacle';
+import NoteLI from '../components/NoteLi';
 
 const StyledLI = styled(ListItem)`
     margin-top: 20px;
 `;
 
 const SlideTwo = () => (
-    <Slide bgColor="primary">
+    <>
         <Notes>
             <h4>Slide Notes</h4>
             <ol>
-                <li>
-                    1. Going to cover what atomic design is, and some guiding
-                    principles
-                </li>
-                <li>
-                    2. How you can apply it to your workflow in React
-                    specifically
-                </li>
-                <li>
-                    3. What problems i've faced at PB and how I feel we can
-                    overcome them
-                </li>
+                <NoteLI>Guiding Principles</NoteLI>
+                <NoteLI>How Apply to apply</NoteLI>
+                <NoteLI>Problems / challenges and solutions</NoteLI>
             </ol>
         </Notes>
         <Heading size={2} textColor="secondary" lineHeight={1}>
@@ -33,7 +25,7 @@ const SlideTwo = () => (
             <StyledLI>Atomic with React</StyledLI>
             <StyledLI>Problems, solutions</StyledLI>
         </List>
-    </Slide>
+    </>
 );
 
 export default SlideTwo;

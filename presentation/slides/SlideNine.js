@@ -1,33 +1,40 @@
 import React from 'react';
-import { Heading, Slide, Notes, Image } from 'spectacle';
+import { Heading, Notes, Image } from 'spectacle';
 import preloader from 'spectacle/lib/utils/preloader';
+import NoteLi from '../components/NoteLi';
 
 const images = {
-    page: require('../../assets/page.png')
+    organisms: require('../../assets/organisms.png')
 };
 
 preloader(images);
 
 const SlideNine = () => (
-    <Slide bgColor="primary" transition={['fade']}>
+    <>
         <Notes>
-            <h4>Notes</h4>
+            <h4>Slide Notes</h4>
             <ul>
-                <li>Culmination of final content paired with UI</li>
-                <li>Something stakeholders can agree to</li>
-                <li>So they can visualise the final product for sign off</li>
+                <NoteLi>Combination of molecules</NoteLi>
+                <NoteLi>
+                    This is fairly small organism but they can be larger
+                    visually
+                </NoteLi>
+                <NoteLi>
+                    Organisms can wrap other organisms, explain later
+                </NoteLi>
             </ul>
         </Notes>
         <Heading size={3} textColor="secondary" lineHeight={1}>
-            Pages
+            Organisms
         </Heading>
         <Image
             width="100%"
             height="100%"
-            src={images.page.replace('/', '')}
+            src={images.organisms.replace('/', '')}
             margin="40px auto 40px auto"
+            style={{ maxWidth: '600px' }}
         />
-    </Slide>
+    </>
 );
 
 export default SlideNine;

@@ -1,0 +1,54 @@
+// Header.tsx
+import styled from 'styled-components';
+const Header = styled.header`
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    background-color: #ffffff;
+    box-shadow: 0 0.125em 0.5em rgba(0, 0, 0 0.5);
+`;
+
+// MaxWidthContainer.tsx
+import styled from 'styled-components';
+const MaxWidthContainer = styled.div`
+    width: 100%;
+    padding: 0 1em;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+
+    @media only screen and (min-width: $screen-sm-min) {
+        max-width: 46.875em;
+    }
+
+    @media only screen and (min-width: $screen-md-min) {
+        max-width: 60.625em;
+    }
+
+    @media only screen and (min-width: $screen-lg-min) {
+        max-width: 73.125em;
+    }
+`
+
+// HeaderBar.tsx
+import React from 'react';
+import Header from 'Components/Header';
+import MaxWidthContainer from 'Components/MaxWidthContainer';
+import styled from 'styled-components'
+
+const MaxWidthFlexContainer = styled(MaxWidthContainer)`
+    position: 'relative',
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const HeaderBar = () => (
+    <Header>
+        <MaxWidthFlexContainer>
+            {children && children}
+        </MaxWidthFlex>
+    </Header>
+);
+
+export default HeaderBar;

@@ -1,0 +1,77 @@
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { fetchTrustpilotReviews } from '../../../redux/trustpilot-general/actions';
+import {
+    IInjectedStatePropsMethods,
+    ITrustpilotGeneralProps,
+    ITrustpilotGeneralMergedProps,
+    ITrustpilotGeneralStateDispatchProps,
+    ITrustpilotGeneralStateProps
+} from './types';
+
+class TrustpilotGeneral extends PureComponent<
+    ITrustpilotGeneralMergedProps,
+    {}
+> {
+    static defaultProps = {
+        page: 1,
+        stars: ['5']
+    };
+
+    constructor(props) {
+        super(props);
+        this.getStateMethodsProps = this.getStateMethodsProps.bind(this);
+        this.getReviews = this.getReviews.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.reviews.length <= 0 || !this.props.isFetching) {
+            this.getReviews();
+        }
+    }
+
+    getReviews(): void {
+        if (this.props.isFetching) return;
+
+        this.props.fetchTrustpilotReviews({
+            page: this.props.page,
+            stars: this.props.stars
+        });
+    }
+
+    getStateMethodsProps(): IInjectedStatePropsMethods {
+        return {
+            errorMsg: this.props.errorMsg,
+            getReviews: this.getReviews,
+            hasError: this.props.hasError,
+            isFetching: this.props.isFetching,
+            reviews: this.props.reviews
+        };
+    }
+
+    render() {
+        return this.props.children(this.getStateMethodsProps());
+    }
+}
+
+const mapStateToProps = state => ({
+    isFetching: state.trustpilotGeneral.isFetching,
+    hasError: state.trustpilotGeneral.hasError,
+    errorMsg: state.trustpilotGeneral.errorMsg,
+    reviews: state.trustpilotGeneral.reviews,
+    page: state.trustpilotGeneral.page
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchTrustpilotReviews: ({ page, perPage, stars }) =>
+        dispatch(fetchTrustpilotReviews({ page, perPage, stars }))
+});
+
+export default connect<
+    ITrustpilotGeneralStateProps,
+    ITrustpilotGeneralStateDispatchProps,
+    ITrustpilotGeneralProps
+>(
+    mapStateToProps,
+    mapDispatchToProps
+)(TrustpilotGeneral);

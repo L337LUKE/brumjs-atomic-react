@@ -1,0 +1,41 @@
+import React, { SFC } from 'react';
+import { MaxWidthContainer } from '../../Atoms';
+import { ITopBarProps } from './types';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+
+const s = require('./styles.scss');
+
+const TopBar: SFC<ITopBarProps> = ({
+    component: Component,
+    children,
+    className,
+    styleOverrides,
+    zIndex
+}) => (
+    <Component
+        className={`${s.bar} ${className ? className : ''}`}
+        style={{
+            zIndex,
+            ...styleOverrides
+        }}
+    >
+        <MaxWidthContainer
+            isFlex={true}
+            styleOverrides={{
+                position: 'relative',
+                msFlexAlign: 'center',
+                WebkitBoxAlign: 'center',
+                alignItems: 'center'
+            }}
+        >
+            {children && children}
+        </MaxWidthContainer>
+    </Component>
+);
+
+TopBar.defaultProps = {
+    component: 'header',
+    zIndex: 10
+};
+
+export default withStyles(s)(TopBar);

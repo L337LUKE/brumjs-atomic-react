@@ -1,31 +1,38 @@
 import React from 'react';
-import { Heading, Slide, Notes, Image } from 'spectacle';
+import { Heading, Notes, Image } from 'spectacle';
 import preloader from 'spectacle/lib/utils/preloader';
+import NoteLi from '../components/NoteLi';
 
 const images = {
-    template: require('../../assets/template.png')
+    molecules: require('../../assets/molecules.png')
 };
 
 preloader(images);
 
 const SlideEight = () => (
-    <Slide bgColor="primary" transition={['fade']}>
+    <>
         <Notes>
-            <h4>Notes</h4>
+            <h4>Slide Notes</h4>
             <ul>
-                <li>Templates often comprise the top level pieces</li>
+                <NoteLi>Groups of a couple or more atoms</NoteLi>
+                <NoteLi>Lightweight UI</NoteLi>
+                <NoteLi>often strictly presentation logic</NoteLi>
+                <NoteLi>
+                    getting to complicated? <br /> you might need an organism
+                </NoteLi>
             </ul>
         </Notes>
         <Heading size={3} textColor="secondary" lineHeight={1}>
-            Templates
+            Molecules
         </Heading>
         <Image
             width="100%"
             height="100%"
-            src={images.template.replace('/', '')}
+            src={images.molecules.replace('/', '')}
             margin="40px auto 40px auto"
+            style={{ maxWidth: '600px' }}
         />
-    </Slide>
+    </>
 );
 
 export default SlideEight;
